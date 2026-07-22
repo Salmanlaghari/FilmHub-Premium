@@ -517,4 +517,109 @@
                 <div class="card-body">
                     <div class="card-image">
                         <img src="https://picsum.photos/id/1062/1600/2400" alt="Drama">
-  
+                        <div class="card-overlay"></div>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-title">Love & Fate</div>
+                <div class="card-details"><span class="star-rating">⭐ 9.1</span><span class="quality-tag">8K</span><span>Drama</span></div>
+            </div>
+            <div class="premium-card" onclick="makeSparks(event)">
+                <div class="card-body">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/id/1069/1600/2400" alt="Drama">
+                        <div class="card-overlay"></div>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-title">Golden Horizon</div>
+                <div class="card-details"><span class="star-rating">⭐ 8.9</span><span class="quality-tag">4K</span><span>Drama</span></div>
+            </div>
+            <div class="premium-card" onclick="makeSparks(event)">
+                <div class="card-body">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/id/1072/1600/2400" alt="Drama">
+                        <div class="card-overlay"></div>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-title">Shadows of Truth</div>
+                <div class="card-details"><span class="star-rating">⭐ 9.3</span><span class="quality-tag">8K</span><span>Drama</span></div>
+            </div>
+            <div class="premium-card" onclick="makeSparks(event)">
+                <div class="card-body">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/id/1080/1600/2400" alt="Drama">
+                        <div class="card-overlay"></div>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="card-title">Whispering Wind</div>
+                <div class="card-details"><span class="star-rating">⭐ 9.0</span><span class="quality-tag">HD+</span><span>Drama</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📱 BOTTOM NAV -->
+    <div class="bottom-bar">
+        <div class="nav-option active">
+            <span class="nav-symbol">🏠</span>
+            <span>Home</span>
+        </div>
+        <div class="nav-option">
+            <span class="nav-symbol">🔍</span>
+            <span>Search</span>
+        </div>
+        <div class="nav-option">
+            <span class="nav-symbol">💎</span>
+            <span>Premium</span>
+        </div>
+        <div class="nav-option">
+            <span class="nav-symbol">👤</span>
+            <span>Profile</span>
+        </div>
+    </div>
+
+    <script>
+        // 🫧 BUBBLE CLICK SPARKS ANIMATION
+        function makeSparks(e) {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            for (let i = 0; i < 12; i++) {
+                const spark = document.createElement('span');
+                spark.className = 'bubble-spark';
+
+                // Set randomized style properties
+                const size = Math.random() * 8 + 4;
+                spark.style.width = `${size}px`;
+                spark.style.height = `${size}px`;
+                spark.style.left = `${x}px`;
+                spark.style.top = `${y}px`;
+
+                // Set random trajectory
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 60 + 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                spark.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
+                    fill: 'forwards'
+                });
+
+                card.appendChild(spark);
+                setTimeout(() => {
+                    spark.remove();
+                }, 800);
+            }
+        }
+    </script>
+</body>
+</html>
